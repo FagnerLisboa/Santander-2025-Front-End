@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta name="description" content="Clone do YouTube, assistindo vídeos de forma moderna e eficiente." />
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
+   <link rel="stylesheet" href="assets/css/global.css">
+   <link rel="stylesheet" href="assets/css/styles.css" />
+   <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+   <title>Clone Moderno YouTube</title>
+</head>
+
+<body>
+   <header class="header">
+      <div class="header-left">
+         <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+         <img src="assets/img/logo-youtube.png" alt="Logo YouTube" class="logo" />
+      </div>
+      <div class="search-bar">
+         <input type="text" placeholder="Pesquisar..." />
+         <button class="search-btn">🔍</button>
+      </div>
+      <div class="header-right">
+         <button class="icon-btn">🔔</button>
+         <img src="assets/img/FotoPerfil.jpg" alt="Perfil" class="profile-img" />
+      </div>
+   </header>
+
+   <main class="main">
+      <section class="video-section">
+         <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/1sq1FmwXh9Q" frameborder="0" allowfullscreen></iframe>
+         </div>
+         <h1 class="video-title">Os 10 maiores mitos sobre os DEVs</h1>
+         <div class="channel-info">
+            <div class="channel-meta">
+               <img src="assets/img/channel-dio.png" alt="DIO" class="channel-avatar" />
+               <div>
+                  <h3>DIO</h3>
+                  <p>83,3 mil inscritos</p>
+               </div>
+            </div>
+            <button class="subscribe-btn">Inscreva-se</button>
+         </div>
+         <div class="video-actions">
+            <button>👍 4 mil</button>
+            <button>👎 Não gostei</button>
+            <button>🔗 Compartilhar</button>
+            <button>⬇️ Download</button>
+         </div>
+         <p class="video-views">896 visualizações • 27 de set. de 2025</p>
+         <p class="video-description">
+            Descubra a verdade por trás do mundo da programação!<br />
+            Hoje, nós desvendamos 10 mitos (e algumas verdades) sobre desenvolvedores.<br />
+            Será que são todos hackers isolados ou passam o dia inteiro codando?
+         </p>
+      </section>
+
+      <aside id="sidebar" class="playlist">
+         <div class="playlist-item">
+            <img src="assets/img/thumbnails/thumb-01.png" alt="Thumb" />
+            <div>
+               <h4>Geração Tech Unimed - BH</h4>
+               <p>DigitalInnovationOne</p>
+               <p>3,1 mil visualizações • há 3 dias</p>
+            </div>
+         </div>
+         <div class="playlist-item">
+            <img src="assets/img/thumbnails/thumb-02.png" alt="Thumb" />
+            <div>
+               <h4>Aprenda a programar com Python</h4>
+               <p>Curso de Python</p>
+               <p>1,2 mil visualizações • há 1 semana</p>
+            </div>
+         </div>
+         <div class="playlist-item">
+            <img src="assets/img/thumbnails/thumb-03.png" alt="Thumb" />
+            <div>
+               <h4>Desenvolvimento Web Completo</h4>
+               <p>Curso de Desenvolvimento Web</p>
+               <p>2,5 mil visualizações • há 2 semanas</p>
+            </div>
+         </div>
+         <div class="playlist-item">
+            <img src="assets/img/thumbnails/thumb-04.png" alt="Thumb" />
+            <div>
+               <h4>Introdução ao JavaScript</h4>
+               <p>Curso de JavaScript</p>
+               <p>1,8 mil visualizações • há 5 dias</p>
+            </div>
+         </div>
+         <div class="playlist-item">
+            <img src="assets/img/thumbnails/thumb-05.png" alt="Thumb" />
+            <div>
+               <h4>Aprenda HTML e CSS do zero</h4>
+               <p>Curso de HTML e CSS</p>
+               <p>3,0 mil visualizações • há 1 mês</p>
+            </div>
+         </div>
+      </aside>
+   </main>
+
+   <script>
+      function toggleSidebar() {
+         const sidebar = document.getElementById("sidebar");
+         sidebar.classList.toggle("open");
+      }
+
+      // Adicionando a funcionalidade de fechar a sidebar ao clicar fora dela
+      window.addEventListener("click", function (e) {
+         const sidebar = document.getElementById("sidebar");
+         const menuButton = document.querySelector(".menu-btn");
+         if (!sidebar.contains(e.target) && !menuButton.contains(e.target)) {
+            sidebar.classList.remove("open");
+         }
+      });
+   </script>
+</body>
+
+</html>
