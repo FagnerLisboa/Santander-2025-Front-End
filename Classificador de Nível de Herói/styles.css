@@ -1,0 +1,208 @@
+/* =========================
+   Tema e variáveis
+   ========================= */
+:root{
+  --brand-1:#6c5ce7;      /* Roxo principal */
+  --brand-2:#a29bfe;      /* Roxo claro */
+  --ok:#10b981;           /* Verde sucesso */
+  --fg:#0f172a;           /* Texto principal (Slate-900) */
+  --muted:#475569;        /* Texto secundário (Slate-600) */
+  --border:#e2e8f0;       /* Borda suave */
+  --surface:#ffffff;      /* Fundo de componentes */
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --fg:#e5e7eb;
+    --muted:#94a3b8;
+    --border:#273244;
+    --surface:#0b1220;
+  }
+}
+
+/* =========================
+   Reset básico
+   ========================= */
+*{ box-sizing:border-box; margin:0; padding:0; }
+html,body{ height:100%; }
+::selection{ background:var(--brand-2); color:#0b0b0b; }
+
+/* =========================
+   Plano de fundo
+   ========================= */
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color:var(--fg);
+  /* Camadas de gradientes suaves */
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #e9d5ff55, transparent 60%),
+    radial-gradient(800px 400px at 110% 10%, #c7d2fe66, transparent 50%),
+    linear-gradient(180deg, #f8fafc, #eef2ff 40%, #faf5ff);
+  display:flex; align-items:center; justify-content:center;
+  padding:24px;
+}
+
+/* =========================
+   Card / Container
+   ========================= */
+.container{
+  width:min(92vw, 480px);
+  background: color-mix(in oklab, var(--surface) 85%, transparent);
+  backdrop-filter: blur(8px);
+  border:1px solid color-mix(in oklab, var(--border) 85%, transparent);
+  box-shadow:
+    0 10px 20px rgba(15, 23, 42, .10),
+    0 2px 6px rgba(15, 23, 42, .04);
+  border-radius:16px;
+  padding:28px 22px;
+  transition: box-shadow .25s ease, transform .25s ease;
+}
+.container:hover{
+  transform: translateY(-1px);
+  box-shadow:
+    0 16px 28px rgba(15, 23, 42, .14),
+    0 4px 10px rgba(15, 23, 42, .06);
+}
+
+/* =========================
+   Título
+   ========================= */
+h1{
+  font-size: clamp(20px, 2vw + 14px, 28px);
+  line-height:1.2;
+  margin-bottom:18px;
+  background: linear-gradient(90deg, var(--brand-1), var(--brand-2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-weight:800;
+  letter-spacing:.2px;
+}
+
+/* =========================
+   Formulário
+   ========================= */
+form{ display:grid; gap:12px; }
+
+label{
+  font-size:14px;
+  color:var(--muted);
+  text-align:left;
+}
+
+input{
+  width:100%;
+  height:46px;
+  padding:10px 12px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#fff;
+  color:var(--fg);
+  outline:none;
+  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+@media (prefers-color-scheme: dark){
+  input{ background:#0e1626; }
+}
+
+input:hover{
+  border-color: color-mix(in oklab, var(--brand-1) 40%, var(--border));
+}
+input:focus-visible{
+  border-color: var(--brand-1);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand-1) 24%, transparent);
+}
+
+/* Remove setas do type=number (WebKit) */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+/* Remove setas (Firefox) */
+input[type=number]{ -moz-appearance:textfield; }
+
+/* =========================
+   Botão
+   ========================= */
+button{
+  margin-top:4px;
+  height:46px;
+  border:0;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:700;
+  letter-spacing:.3px;
+  color:#fff;
+  background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+  box-shadow:
+    0 8px 16px rgba(108, 92, 231, .25),
+    inset 0 1px 0 rgba(255,255,255,.18);
+  transition: transform .12s ease, box-shadow .2s ease, filter .2s ease;
+}
+button:hover{
+  transform: translateY(-1px);
+  box-shadow:
+    0 12px 20px rgba(108, 92, 231, .30),
+    inset 0 1px 0 rgba(255,255,255,.20);
+}
+button:active{
+  transform: translateY(0);
+  filter: saturate(1.05);
+}
+button:focus-visible{
+  outline: 3px solid color-mix(in oklab, var(--brand-2) 40%, transparent);
+  outline-offset:2px;
+}
+
+/* =========================
+   Resultado
+   ========================= */
+.resultado{
+  margin-top:18px;
+  min-height: 48px; /* reserva espaço pro resultado */
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+}
+
+#mensagem{
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid color-mix(in oklab, var(--brand-2) 35%, var(--border));
+  background: color-mix(in oklab, #ffffff 85%, var(--brand-2) 15%);
+  font-size:16px;
+  font-weight:700;
+  line-height:1.2;
+  opacity:.0;
+  transform: translateY(6px);
+  transition: opacity .25s ease, transform .25s ease, background .25s ease;
+  text-wrap: balance;
+}
+
+/* Anima a aparição quando houver texto */
+.resultado:has(#mensagem:not(:empty)) #mensagem{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* Modo escuro para o resultado */
+@media (prefers-color-scheme: dark){
+  #mensagem{
+    background: color-mix(in oklab, #0e1626 80%, var(--brand-2) 20%);
+    border-color: color-mix(in oklab, var(--brand-2) 45%, var(--border));
+  }
+}
+
+/* =========================
+   Campos inválidos nativos
+   ========================= */
+input:invalid{
+  border-color: #fca5a5;
+}
+input:invalid:focus-visible{
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, .2);
+}
+
+/* =========================
+   Acessibilidade / Motion
+   ========================= */
+@media (prefers-reduced-motion: reduce){
+  *{ transition: none !important; }
+}
